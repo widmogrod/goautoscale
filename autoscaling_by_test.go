@@ -96,7 +96,7 @@ func TestAutoScalingBy(t *testing.T) {
 }
 
 // The example shows recommendation when a service needs to be scaled up due to CPU utilization bellow recommended
-func ExampleCPUScale_scale_up() {
+func ExampleCPUScale_up() {
 	ctx := Context{
 		// Auto scaling will not trigger when CPU utilisation is in given range
 		CPUNoopRange: Range{
@@ -113,7 +113,7 @@ func ExampleCPUScale_scale_up() {
 }
 
 // The example shows recommendation when a service needs to be scaled down due to CPU utilization bellow recommended
-func ExampleCPUScale_scale_down() {
+func ExampleCPUScale_down() {
 	ctx := Context{
 		// Auto scaling will not trigger when CPU utilisation is in given range
 		CPUNoopRange: Range{
@@ -131,7 +131,7 @@ func ExampleCPUScale_scale_down() {
 
 // The example shows recommendation when a service don't need any change in number of instance
 // due to CPI utilization being in range.
-func ExampleCPUScale_no_scale() {
+func ExampleCPUScale_noop() {
 	ctx := Context{
 		// Auto scaling will not trigger when CPU utilisation is in given range
 		CPUNoopRange: Range{
