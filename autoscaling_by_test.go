@@ -95,18 +95,54 @@ func TestAutoScalingBy(t *testing.T) {
 	}
 }
 
-// Positive number means to scale up, negative scale down, and zero don't do anything
-func ExampleCPUScale() {
+// The example shows recommendation when a service needs to be scaled up due to CPU utilization bellow recommended
+func ExampleCPUScale_scale_up() {
 	ctx := Context{
+		// Auto scaling will not trigger when CPU utilisation is in given range
 		CPUNoopRange: Range{
 			Min: 80,
 			Max: 90,
 		},
 		MaintainsCPUAvg: 85,
 		CPUUtilisation:  99,
-		Instances:       3,
+		Instances:       30,
 	}
 
 	fmt.Println(CPUScale(ctx))
-	// Output: 1
+	// Output: 5
+}
+
+// The example shows recommendation when a service needs to be scaled down due to CPU utilization bellow recommended
+func ExampleCPUScale_scale_down() {
+	ctx := Context{
+		// Auto scaling will not trigger when CPU utilisation is in given range
+		CPUNoopRange: Range{
+			Min: 80,
+			Max: 90,
+		},
+		MaintainsCPUAvg: 85,
+		CPUUtilisation:  50,
+		Instances:       30,
+	}
+
+	fmt.Println(CPUScale(ctx))
+	// Output: -12
+}
+
+// The example shows recommendation when a service don't need any change in number of instance
+// due to CPI utilization being in range.
+func ExampleCPUScale_no_scale() {
+	ctx := Context{
+		// Auto scaling will not trigger when CPU utilisation is in given range
+		CPUNoopRange: Range{
+			Min: 80,
+			Max: 90,
+		},
+		MaintainsCPUAvg: 85,
+		CPUUtilisation:  88,
+		Instances:       30,
+	}
+
+	fmt.Println(CPUScale(ctx))
+	// Output: 0
 }
