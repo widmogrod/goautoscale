@@ -21,5 +21,5 @@ fmt.Println(CPUScale(ctx))
 ```
 
 Example demonstrate how number of instances changes in regard to average CPU utilisation.
-![Average CPU utilization in percentage](./autoscaling_by_test_cpu.png)
-![Auto Scaling decision to change number of instances with respect to average CPU utilisation](./autoscaling_by_test_inst.png)
+![Average CPU utilization in percentage](./docs/autoscaling_simulation_cpu.png)
+![Auto Scaling decision to change number of instances with respect to average CPU utilisation](./docs/autoscaling_simulation_inst.png)
